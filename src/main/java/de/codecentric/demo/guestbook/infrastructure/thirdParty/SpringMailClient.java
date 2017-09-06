@@ -13,11 +13,10 @@ public class SpringMailClient implements GuestbookMailClient {
     public SpringMailClient(KeycloakRestTemplate template) {
         this.template = template;
     }
-    private final String endpoint = "http://localhost:8082/mail";
-
 
     @Override
     public void sendMail(GuestbookEntry entry) {
+        String endpoint = "http://localhost:8082/mail";
         Boolean result = template.postForObject(endpoint, entry, Boolean.class);
         System.out.println("Mail sent: " + result.toString());
     }
